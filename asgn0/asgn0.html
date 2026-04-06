@@ -15,10 +15,10 @@
             <label>v1:</label>
 
             <label>x</label>
-            <input type = "number" id = "v1x">
+            <input type="number" id="v1x">
 
             <label>y</label>
-            <input type = "number" id = "v1y">
+            <input type="number" id="v1y">
 
         </div>
 
@@ -26,18 +26,40 @@
             <label>v2:</label>
 
             <label>x</label>
-            <input type = "number" id = "v2x">
+            <input type="number" id="v2x">
 
             <label>y</label>
-            <input type = "number" id = "v2y">
+            <input type="number" id="v2y">
 
         </div>
 
         <div>
-            <button id = "drawBtn">Draw</button>
+            <button id="drawBtn">Draw</button>
         </div>
 
-        <script src ="lib/cuon-matrix-cse160.js"></script>
+        <div>
+            <label>Operation:</label>
+            <select id="opSel">
+                <option value="add">Add</option>
+                <option value="sub">Subtract</option>
+                <option value="mul">Multiply</option>
+                <option value="div">Divide</option>
+                <option value="dot">Angle Between</option>
+                <option value="cross">Area</option>
+                <option value="magnitude">Magnitude</option>
+                <option value="normalize">Normalize</option>
+            </select>
+
+            <label>Scalar:</label>
+            <input type="number" id="scalar">
+
+        </div>
+
+        <div>
+            <button id="drawBtn2">Draw</button>
+        </div>
+
+        <script src="lib/cuon-matrix-cse160.js"></script>
         <script src="asgn0.js"></script>
     </body> 
 </html>
