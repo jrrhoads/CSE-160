@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    
+    <div>
+      <button type="button" id="clearButton">Clear Canvas</button>
+    </div>
+    <label> Drawing Mode:</label>
+    <div>
+      <button type="button" id="pointButton">Point</button>
+      <button type="button" id="triButton">Triangle</button>
+      <button type="button" id="circleButton">Circle</button>
+    </div>
+    <label>Shape Color: </label>
+    <div>
+      <label>Red: </label>
+      <input type="range" min="0" max="100" value="100" class="slider" id="redSlide">
+      <label>Green: </label>
+      <input type="range" min="0" max="100" value="100" class="slider" id="greenSlide">
+      <label>Blue: </label>
+      <input type="range" min="0" max="100" value="100" class="slider" id="blueSlide">
+      <label>Opacity: </label>
+      <input type="range" min="0" max="100" value="100" class="slider" id="alphaSlide">
+    </div>
+    <label>Shape Settings: </label>
+    <div>
+      <label>Size: </label>
+      <input type="range" min="5" max="40" value="5" class="slider" id="sizeSlide">
+      <label>Circle Segments: </label>
+      <input type="range" min="10" max="25" value="10" class="slider" id="segmentSlide">
+    </div>
+    <p></p>
+    <div>
+      <button type="button" id="picButton">Draw a pretty picture!</button>
+    </div>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="CustomTriangle.js"></script>
+    <script src="Circle.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="Point.js"></script>
+    <script src="asgn1.js"></script>
+  </body>
+</html>
