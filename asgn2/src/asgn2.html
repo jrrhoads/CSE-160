@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Change a point color</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <p id="fps">FPS: --</p>
+    <div>
+      <button type="button" id="animOnButton">Animation ON</button>
+      <button type="button" id="animOffButton">Animation OFF</button>
+    </div>
+    <label>Joint Angles: </label>
+    <div>
+      <label>Leg Z Angle: </label>
+      <input type="range" min="-90" max="90" value="10" class="slider" id="legZAngleSlide">
+      <label>Calf Z Angle: </label>
+      <input type="range" min="-90" max="90" value="5" class="slider" id="calfZAngleSlide">
+      <label>Foot Z Angle: </label>
+      <input type="range" min="-90" max="90" value="-15" class="slider" id="footZAngleSlide">
+    </div>
+    <label>Cam Angle: </label>
+    <div>
+      <label>Cam X: </label>
+      <input type="range" min="-90" max="90" value="0" class="slider" id="camXSlide">
+
+      <label>Cam Y: </label>
+      <input type="range" min="-90" max="90" value="0" class="slider" id="camYSlide">
+
+      <label>Cam Z: </label>
+      <input type="range" min="-90" max="90" value="0" class="slider" id="camZSlide">
+      
+    </div>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="Cube.js"></script>
+    <script src="Triangle.js"></script>
+    <script src="asgn2.js"></script>
+  </body>
+</html>
