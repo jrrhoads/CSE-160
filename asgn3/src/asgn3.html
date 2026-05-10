@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>World Assignment</title>
+  </head>
+
+  <body onload="main()">
+    <canvas id="webgl" width="400" height="400">
+    Please use a browser that supports "canvas"
+    </canvas>
+    <p id="fps">FPS: --</p>
+    <label>Cam Angle: </label>
+    <div>
+      <label>Cam X: </label>
+      <input type="range" min="-180" max="180" value="0" class="slider" id="camXSlide">
+
+      <label>Cam Y: </label>
+      <input type="range" min="-180" max="180" value="0" class="slider" id="camYSlide">
+
+      <label>Cam Z: </label>
+      <input type="range" min="-180" max="180" value="0" class="slider" id="camZSlide">
+      
+    </div>
+
+    <script src="../lib/webgl-utils.js"></script>
+    <script src="../lib/webgl-debug.js"></script>
+    <script src="../lib/cuon-utils.js"></script>
+    <script src="../lib/cuon-matrix-cse160.js"></script>
+    <script src="../src/Cube.js"></script>
+    <script src="../src/Triangle.js"></script>
+    <script src="../src/Camera.js"></script>
+    <script src="../src/asgn3.js"></script>
+  </body>
+</html>
