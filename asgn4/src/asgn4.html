@@ -10,6 +10,9 @@
     Please use a browser that supports "canvas"
     </canvas>
     <p id="fps">FPS: --</p>
+    <p></p>
+    <p>Use WASD to move camera, and click on the scene to adjust camera angle with your mouse.</p>
+    <p></p>
     <div>
       <button id="normalOn">Normal On</button>
       <button id="normalOff">Normal Off</button>
@@ -21,11 +24,17 @@
     </div>
     <p></p>
     <div>
+      <label>Light Hue: </label>
+      <input type="range" min="0" max="360" value="0" id="lightHue">
+    </div>
+    <p></p>
+    <div>
       <button id="spotOn">Spotlight On</button>
       <button id="spotOff">Spotlight Off</button>
     </div>
     <p></p>
-    <label>Light Pos: </label>
+    <label>Light Position: </label>
+    <p>Note: Only y position is adjustable, x and z positions are locked to circular animation.</p>
     <div>
       <label>Light X: </label>
       <input type="range" min="-250" max="250" value="0" class="slider" id="lightX">

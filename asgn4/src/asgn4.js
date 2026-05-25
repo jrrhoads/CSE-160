@@ -31,6 +31,7 @@ var FSHADER_SOURCE = `
   uniform int u_WhichTexture;
   uniform bool u_Specular;
   uniform bool u_LightOn;
+  uniform vec3 u_LightColor;
   uniform bool u_SpotOn;
   uniform vec3 u_SpotPos;
   uniform vec3 u_SpotDir;
@@ -64,7 +65,7 @@ var FSHADER_SOURCE = `
       vec3 L = normalize(lightVector);
 
       float nDotL = max(dot(N, L), 0.0);
-      vec3 diffuse = vec3(gl_FragColor) * nDotL * 0.7;
+      vec3 diffuse = vec3(gl_FragColor) * nDotL * 0.7 * u_LightColor;
       vec3 ambient = vec3(gl_FragColor) * 0.3;
 
       if (u_Specular) {
@@ -112,7 +113,7 @@ let u_Sampler1; //Sky texture
 let u_CameraPos;
 let u_LightPos;
 let u_Specular;
-let u_LightOn;
+let u_LightOn, u_LightColor;
 let u_SpotOn, u_SpotPos, u_SpotDir, u_SpotCutoff;
 
 
@@ -137,6 +138,8 @@ var g_uvBuffer = null;
 var g_normalBuffer = null;
 
 var g_normalOn = false;
+
+var g_LightColor = [1, 1, 1]; 
 
 var g_spotOn = false;
 var g_spotPos = [0, 5, 0];
@@ -267,6 +270,7 @@ function connectVariablesToGLSL(){
   u_SpotPos = gl.getUniformLocation(gl.program, 'u_SpotPos');
   u_SpotDir = gl.getUniformLocation(gl.program, 'u_SpotDir');
   u_SpotCutoff = gl.getUniformLocation(gl.program, 'u_SpotCutoff');
+  u_LightColor = gl.getUniformLocation(gl.program, 'u_LightColor');
 
   var identityM = new Matrix4();
   gl.uniformMatrix4fv(u_ModelMatrix, false, identityM.elements);
@@ -287,7 +291,7 @@ function addActionsFromUI(){
   document.getElementById("spotOn").onclick  = function(){ g_spotOn = true; }
   document.getElementById("spotOff").onclick = function(){ g_spotOn = false; }
 
-  //Slider Event (Cam Angles)
+  //Light Sliders
   document.getElementById("lightX").addEventListener(
     'mousemove', 
     function() {
@@ -309,7 +313,23 @@ function addActionsFromUI(){
     renderScene();
   });
 
-    document.getElementById("camXSlide").addEventListener(
+  //Light Hue Slider
+  document.getElementById("lightHue").addEventListener('mousemove', function() {
+    let h = this.value / 360;
+
+    let r = Math.abs(h * 6 - 3) - 1;
+    let g = 2 - Math.abs(h * 6 - 2);
+    let b = 2 - Math.abs(h * 6 - 4);
+    g_LightColor = [
+      Math.min(Math.max(r, 0), 1),
+      Math.min(Math.max(g, 0), 1),
+      Math.min(Math.max(b, 0), 1)
+    ];
+    renderScene();
+  });
+
+  //Cam Sliders
+  document.getElementById("camXSlide").addEventListener(
     'mousemove', 
     function() {
     g_globalXAngle = this.value;
@@ -323,12 +343,15 @@ function addActionsFromUI(){
     renderScene();
   });
 
+
   document.getElementById("camZSlide").addEventListener(
     'mousemove', 
     function() {
     g_globalZAngle = this.value;
     renderScene();
   });
+
+  //
 
 }
 
@@ -598,7 +621,9 @@ function renderScene(){
 
   gl.uniformMatrix4fv(u_GlobalRotateMatrix, false, globalRotMat.elements);
   gl.uniform3f(u_LightPos, g_lightPos[0], g_lightPos[1], g_lightPos[2]);
+  gl.uniform3f(u_LightColor, g_LightColor[0], g_LightColor[1], g_LightColor[2]);
   gl.uniform1i(u_LightOn, g_LightOn);
+  
 
   gl.uniform1i(u_SpotOn, g_spotOn);
   gl.uniform3f(u_SpotPos, g_spotPos[0], g_spotPos[1], g_spotPos[2]);
@@ -607,7 +632,7 @@ function renderScene(){
 
   var light = new Cube();
   light.textureNum = -2;
-  light.color = [1, 1, 0, 1];
+  light.color = [g_LightColor[0], g_LightColor[1], g_LightColor[2], 1];
   light.matrix.translate(g_lightPos[0], g_lightPos[1], g_lightPos[2]);
   light.matrix.scale(-0.1, -0.1, -0.1);
   gl.uniform1i(u_Specular, false);
