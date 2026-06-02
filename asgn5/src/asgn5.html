@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello Cube</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+  <style>
+    canvas {
+        width: 30vw;
+        height: 30vh;
+        display: block;
+    }
+    body {
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+  </style>
+
+</head>
+<body>
+    <div style="position:fixed; top:10px; left:10px; color:rgb(0, 0, 0); font-family:sans-serif; font-size:14px; z-index:10;">
+        Controls:
+        <p></p>
+        - Left click drag to rotate camera
+        <p></p>
+        - Right click drag to pan
+        <p></p>
+        - Scroll to zoom
+    </div>
+  <canvas id="c"></canvas>
+  <script type="module" src="asgn5.js"></script>
+</body>
+</html>
